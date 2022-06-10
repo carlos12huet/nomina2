@@ -20,9 +20,9 @@ return new class extends Migration
             $table->timestamps();
 
             //relacion departamento
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             //relacion puesto
-            $table->foreign('position_id')->references('id')->on('positions');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
         });
     }
 

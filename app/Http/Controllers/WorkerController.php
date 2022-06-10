@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WorkerCreateRequest;
 use App\Http\Requests\WorkerEditRequest;
+use App\Imports\WorkersImport;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkerController extends Controller
 {
-    //public $active;
+    
     public function index(Request $request)
     {
         $buscarpor = $request->get('buscarpor');
-        $workers = DB::table('workers')->where('nombre','like','%'.$buscarpor.'%')
-        ->orWhere('rfc','like','%'.$buscarpor.'%')->Simplepaginate(5);
+        //$status = $request->get('status');
+        $workers = DB::table('workers')
+        /*->when($this->status,function($query)
+        {
+            return $query->where('status',1);
+        })*/
+        ->where('nombre','like','%'.$buscarpor.'%')
+        ->orWhere('rfc','like','%'.$buscarpor.'%')
+        ->Simplepaginate(10);
         return view('worker.index',compact('workers','buscarpor'));
     }
 
@@ -56,5 +65,18 @@ class WorkerController extends Controller
         Worker::find($id)->delete();
         return redirect()->route('worker.index')
             ->with('success', 'Trabajador eliminado satisfactoriamente');
+    }
+
+    public function import()
+    {
+        return view('worker.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        $file = $request->file('import');
+        Excel::import(new WorkersImport, $file);
+        return redirect()->route('worker.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

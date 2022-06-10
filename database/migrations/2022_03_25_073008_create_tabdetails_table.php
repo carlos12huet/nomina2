@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('tabdetails', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tab_id');   //llave foranea tabs
-            $table->unsignedBigInteger('position_id');    //llave foranea puestos
-            $table->double('sueldo_diario',8,2);
-            $table->double('sueldo_mensual',8,2);
-            $table->timestamps();
+            $table->unsignedBigInteger('tab_id')->nullable(false);   //llave foranea tabs
+            $table->unsignedBigInteger('position_id')->nullable(false);    //llave foranea puestos
+            $table->double('compensacion',15,5)->nullable();
+            $table->string('zona_economica')->nullable();
+            $table->double('sueldo_diario',15,5);
+            $table->double('sueldo_mensual',15,5);
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
 
             //relaciones
             $table->foreign('tab_id')->references('id')->on('tabs');//TABS

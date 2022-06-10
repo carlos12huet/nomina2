@@ -18,6 +18,6 @@ class Regime extends Model
 
     public function contracts()
     {
-        return $this->hasMany('App\Models\Contract');
+        return $this->hasMany(Contract::class);
     }
 }

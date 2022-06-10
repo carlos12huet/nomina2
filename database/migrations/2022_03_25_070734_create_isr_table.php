@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('clave')->unique()->nullable(false);
             $table->string('descripcion')->unique()->nullable(false);
+            $table->string('tipo');
             $table->boolean('status');
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

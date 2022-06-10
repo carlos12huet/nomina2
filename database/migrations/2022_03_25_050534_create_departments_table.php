@@ -17,11 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre')->unique()->nullable(false);
-            $table->unsignedBigInteger('project_id')->nullable(false); //Llave foranea proyectos
-            $table->timestamps();
-
-            //Relacion con proyectos
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

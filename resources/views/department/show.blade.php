@@ -29,10 +29,23 @@
                             {{ $department->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Proyecto:</strong>
-                            {{ $department->project->nombre }}
+                            <br>
+                            <br>
+                            <strong>Ubicados en </strong>
+                            @foreach ($department->projects as $proyect)
+                            <br>    
+                                {{$proyect->nombre}}
+                            @endforeach
                         </div>
-
+                        <div class="form-group">
+                            <br>
+                            <br>
+                            <strong>Con Puestos </strong>
+                            @foreach ($department->positions as $position)
+                            <br>    
+                                {{$position->nombre}}
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

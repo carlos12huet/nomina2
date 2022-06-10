@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id'); //llave foranea proyeco
             $table->timestamps();
 
-            $table->foreign('municipality_id')->references('id')->on('municipalities');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('municipality_id')->references('id')->on('municipalities')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

@@ -6,13 +6,16 @@ use App\Models\Workday;
 
 use App\Http\Requests\WorkdayCreateRequest;
 use App\Http\Requests\WorkdayEditRequest;
+use App\Imports\WorkdaysImport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkdayController extends Controller
 {
     public function index()
     {
-        $workdays = DB::table('workdays')->Simplepaginate(5);
+        $workdays = DB::table('workdays')->Simplepaginate(10);
         return view('workday.index',compact('workdays'));
     }
 
@@ -26,7 +29,7 @@ class WorkdayController extends Controller
     {
         Workday::create($request->all());
         return redirect()->route('workday.index')
-            ->with('success', 'Regimen Fiscal creado satisfactoriamente.');
+            ->with('success', 'Jornada creada satisfactoriamente.');
     }
 
     public function show($id)
@@ -45,13 +48,26 @@ class WorkdayController extends Controller
     {
         $workday->update($request->all());
         return redirect()->route('workday.index')
-            ->with('success', 'Regimen fiscal actualizado satisfactoriamente');
+            ->with('success', 'Jornada actualizada satisfactoriamente');
     }
 
     public function destroy($id)
     {
         Workday::find($id)->delete();
         return redirect()->route('workday.index')
-            ->with('success', 'regime eliminado satisfactoriamente');
+            ->with('success', 'Jornada eliminada satisfactoriamente');
+    }
+
+    public function import()
+    {
+        return view('workday.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        $file = $request->file('import');
+        Excel::import(new WorkdaysImport, $file);
+        return redirect()->route('workday.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

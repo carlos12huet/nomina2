@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre')->unique()->nullable(false);
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

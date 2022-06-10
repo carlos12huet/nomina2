@@ -27,7 +27,6 @@ class DepartmentEditRequest extends FormRequest
         return [
             'clave' => ['required','unique:departments,clave,'.$department->id],
             'nombre' => ['required','unique:departments,nombre,'.$department->id],
-            'project_id' => ['required'],
         ];
     }
 }

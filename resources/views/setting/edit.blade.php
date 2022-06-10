@@ -14,11 +14,9 @@
                         <span class="card-title">Actualizar Registro</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('setting.update', $setting->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        {!! Form::model($setting, ['route'=>['setting.update',$setting],'autocomplete'=>'off', 'files' => true, 'method'=>'patch']) !!}
                             @include('setting.form')
-                        </form>
+                            {!! Form::close() !!}
                     </div>
                 </div>
             </div>

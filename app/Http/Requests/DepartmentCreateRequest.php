@@ -26,7 +26,6 @@ class DepartmentCreateRequest extends FormRequest
         return [
             'clave' => 'required|unique:departments',
             'nombre' => 'required|unique:departments',
-            'project_id' => 'required',
         ];
     }
 }

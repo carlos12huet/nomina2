@@ -20,6 +20,9 @@
                                 <a href="{{ route('position.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo') }}
                                 </a>
+                                <a href="{{ route('position.import') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                                    {{ __('Importar') }}
+                                </a>
                               </div>
                         </div>
                     </div>
@@ -31,7 +34,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-bordered table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>ID</th>
@@ -40,7 +43,7 @@
                                         <th>Creado</th>
                                         <th>Actualizado</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,7 +61,9 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('position.edit',$position->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     {{csrf_field()}}
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    @if (auth()->user()->role_id == 1)
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>    
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>

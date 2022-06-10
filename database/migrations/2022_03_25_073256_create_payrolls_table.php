@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
-            $table->string('clave');
-            $table->unsignedBigInteger('project_id');//llave foranea proyectos
-            $table->timestamps();
-
-            //relacion proyecto
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->string('clave')->unique();
+            $table->text('descripcion')->unique();
+            $table->integer('tipo');
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

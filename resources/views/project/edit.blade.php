@@ -14,11 +14,9 @@
                         <span class="card-title">Actualizar Proyecto</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('project.update', $project->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        {!! Form::model($project, ['route'=>['project.update',$project],'autocomplete'=>'off', 'files' => true, 'method'=>'patch']) !!}
                             @include('project.form')
-                        </form>
+                        {{Form::close()}}
                     </div>
                 </div>
             </div>

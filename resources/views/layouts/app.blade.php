@@ -24,6 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('home') }}">
+                    <img src="https://img.icons8.com/material-sharp/24/000000/home.png"/>
                     {{ __('Home') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -32,11 +33,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    
-                    @if (Auth::check())
-                        
+                    @auth
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown"> <!-- Catalogos -->
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Catalogos') }}
                             </a>
@@ -58,7 +57,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown"><!-- Recursos Humanos -->
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Recursos Humanos') }}
                             </a>
@@ -75,13 +74,63 @@
                                 <a class="dropdown-item" href="{{ route('department.index') }}">
                                     {{ __('Departamentos') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('municipality.index') }}">
+                                    {{ __('Municipios') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('contract.index') }}">
+                                    {{ __('Contratos') }}
+                                </a>
                             </div>
                         </li>
-                        <li class="nav-item float-right">
-                            <a class="nav-link text-black btn btn-sm " href="#">Crear nomina</a>
-                          </li>
+                        <li class="nav-item dropdown"><!-- Ley ISR -->
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('ISR') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('subsidy.index')}}">
+                                    {{ __('Subsidio') }}</a>
+                                <!--<a class="dropdown-item" href="{{route('subdetail.index')}}">
+                                    {{ __('Tablas subsidio') }}</a>-->
+                                <a class="dropdown-item" href="{{route('isr.index')}}">
+                                    {{ __('ISR') }}</a>
+                                <!--<a class="dropdown-item" href="{{route('isrdetail.index')}}">
+                                    {{ __('Tablas ISR') }}</a>-->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><!-- PER/DED -->
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Percepciones y Deduciones') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('sihae.index')}}">
+                                    {{ __('SIHAE') }}</a>
+                                <a class="dropdown-item" href="{{route('satperception.index')}}">
+                                    {{ __('Percepciones SAT') }}</a>
+                                <a class="dropdown-item" href="{{route('satdeduction.index')}}">
+                                    {{ __('Deduciones SAT') }}</a>
+                                <a class="dropdown-item" href="{{route('perception.index')}}">
+                                    {{ __('Percepciones') }}</a>
+                                <a class="dropdown-item" href="{{route('deduction.index')}}">
+                                    {{ __('Deducciones') }}</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><!-- Tabuladores de pago -->
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Tabuladores') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('tab.index')}}">
+                                    {{ __('Tabulador') }}</a>
+                                <a class="dropdown-item" href="{{route('tabdetail.index')}}">
+                                    {{ __('Tabulacion') }}</a>
+                            </div>
+                        </li>
+                        <li class="nav-item float-right"><!-- Nomina -->
+                            <a class="nav-link text-black btn btn-sm " href="{{route('payroll.index')}}" target="_blank" rel="noopener noreferrer">
+                                {{ __('Crear Nomina') }}</a>
+                        </li>
                     </ul>
-                    @endif
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -89,26 +138,44 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <img src="https://img.icons8.com/external-flat-icons-inmotus-design/67/000000/external-login-man-and-woman-flat-icons-inmotus-design.png" width="20" height="20"/>
+                                        {{ __('Iniciar sesion') }}
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <img src="https://img.icons8.com/external-others-iconmarket/64/000000/external-register-online-learning-others-iconmarket-2.png" width="20" height="20"/>
+                                        {{ __('Registrar') }}
+                                    </a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown"> <!--Usuario-->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('setting.index') }}">
+                                        {{ __('Variables') }}
+                                    </a>
+                                    @if (auth()->user()->role_id == 1)
+                                        <a class="dropdown-item" href="{{ route('user.index') }}">
+                                            {{ __('Usuarios') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('role.index') }}">
+                                            {{ __('Roles') }}
+                                        </a>
+                                    @endif
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar sesion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $period->nombre ?? 'Regimen Fiscal' }}
+    {{ $period->nombre ?? 'Periodo de pago' }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Regimen Fiscal{{$period->clave}}</span>
+                            <span class="card-title">Periodo de pago: {{$period->clave}}</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary my-2" href="{{ route('period.index') }}"> Regresar</a>

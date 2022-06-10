@@ -14,11 +14,9 @@
                         <span class="card-title">Actualizar Puesto</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('position.update', $position->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        {!! Form::model($position, ['route'=>['position.update',$position],'autocomplete'=>'off', 'files' => true, 'method'=>'patch']) !!}
                             @include('position.form')
-                        </form>
+                            {{Form::close()}}
                     </div>
                 </div>
             </div>

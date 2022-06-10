@@ -14,11 +14,9 @@
                         <span class="card-title">Actualizar Departamento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('department.update', $department->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        {!! Form::model($department, ['route'=>['department.update',$department],'autocomplete'=>'off', 'files' => true, 'method'=>'patch']) !!}
                             @include('department.form')
-                        </form>
+                        {{Form::close()}}
                     </div>
                 </div>
             </div>

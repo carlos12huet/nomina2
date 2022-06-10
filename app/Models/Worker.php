@@ -10,6 +10,7 @@ class Worker extends Model
 {
     use HasFactory;
     protected $table = 'workers';
+    protected $dateFormat = 'Y-m-d';
     protected $fillable = [
         'rfc',
         'curp',
@@ -50,6 +51,6 @@ class Worker extends Model
     }
     public function contracts()
     {
-        return $this->hasMany('App\Models\Contract');
+        return $this->hasMany(Contract::class);
     }
 }

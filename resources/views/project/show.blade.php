@@ -25,8 +25,22 @@
                             {{ $project->clave }}
                         </div>
                         <div class="form-group">
-                            <strong>Nombre:</strong>
+                            <strong>Proyecto </strong>
                             {{ $project->nombre }}
+                            <br>
+                            <br>
+                            <strong>Ubicados en </strong>
+                            @foreach ($project->municipalities as $proyect)
+                            <br>    
+                                {{$proyect->nombre}}
+                            @endforeach
+                            <br>
+                            <br>
+                            <strong>En departamentos </strong>
+                            @foreach ($project->departments as $proyect)
+                            <br>    
+                                {{$proyect->nombre}}
+                            @endforeach
                         </div>
 
                     </div>

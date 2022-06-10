@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre');
-            $table->unsignedBigInteger('ded_sat_id'); //llave foranea sat deducciones
-            $table->timestamps();
-
-            $table->foreign('ded_sat_id')->references('id')->on('satdeductions');
+            $table->unsignedBigInteger('satdeduction_id')->nullable(); //llave foranea sat deducciones
+            $table->integer('tipo');
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
+            $table->foreign('satdeduction_id')->references('id')->on('satdeductions');
         });
     }
 

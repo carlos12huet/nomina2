@@ -9,6 +9,7 @@ class Tax extends Model
 {
     use HasFactory;
     protected $table = 'taxs';
+    protected $dateFormat = 'Y-m-d';
     protected $fillable = [
         'clave',
         'nombre',

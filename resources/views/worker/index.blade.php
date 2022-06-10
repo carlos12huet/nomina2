@@ -15,18 +15,22 @@
                             <span id="card_title">
                                 {{ __('Trabajadores') }}
                             </span>
-                            <!--<div class="float-right">
-                                <input type="hidden" name="active" value="0">
-                                <input type="checkbox" class="mr-2 leading-tight" name="active" id="active" value="1" {{old(0) === 1 ? 'checked':''}}>
-                                <label class="form-check-label mt-2">Solo activos</label>
-                            </div>-->
-                            <form class="form-inline my-2 my-lg-0">
-                                <input type="search" name="buscarpor" class="form-control mr-sm-2" placeholder="Buscar" aria-label="Search" value="{{$buscarpor}}">
-                                <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                            </form>
+                            
+                            <div class="justify-content-center">
+                                {{--<input type="checkbox" class="mr-2 leading-tight" name="status" value="1">
+                                <label class="form-check-label mt-2">Solo activos</label>--}}
+                                <form class="form-inline my-2 my-lg-0">
+                                    
+                                    <input type="search" name="buscarpor" class="form-control mr-sm-2" placeholder="Buscar" aria-label="Search" value="{{$buscarpor}}">
+                                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                                </form>
+                            </div>
                              <div class="float-right">
                                 <a href="{{ route('worker.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo') }}
+                                </a>
+                                <a href="{{ route('worker.import') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                                    {{ __('Importar') }}
                                 </a>
                             </div>
                             
@@ -40,17 +44,17 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-bordered table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>ID</th>
 										<th>Nombre</th>
                                         <th>RFC</th>
                                         <th>Status</th>
-                                        <th>Creado</th>
+                                        <th>Alta</th>
                                         <th>Actualizado</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +73,9 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('worker.edit',$worker->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     {{csrf_field()}}
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    @if (auth()->user()->role_id == 1)
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>    
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>

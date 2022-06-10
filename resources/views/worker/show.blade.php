@@ -50,9 +50,6 @@
                             {{$worker->status ? 'activo' : 'inactivo' }}
                         </div>
                         <br>
-                        <div>
-                            <a class="btn btn-sm btn-success" href="{{ route('worker.edit',$worker->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                        </div>
                     </div>
                 </div>
             </div>

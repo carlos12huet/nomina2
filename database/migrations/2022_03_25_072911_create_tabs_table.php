@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('clave');
             $table->boolean('status');
             $table->boolean('sindicalizado');
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

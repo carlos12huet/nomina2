@@ -24,7 +24,7 @@ class WorkerCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'rfc' => 'required|unique:workers|max:13|min:13',
+            'rfc' => 'required|unique:workers|max:14|min:13',
             'nss' => 'required|unique:workers|max:11|min:11',
             'curp' => 'required|unique:workers|max:18|min:18',
             'nombre' => 'required|unique:workers',

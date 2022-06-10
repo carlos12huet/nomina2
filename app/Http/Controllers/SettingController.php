@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SettingsImport;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        $settings = DB::table('settings')->Simplepaginate(5);
+        $settings = DB::table('settings')->Simplepaginate(10);
         return view('setting.index',compact('settings'));
     }
 
@@ -22,9 +24,23 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
-        Setting::create($request->all());
-        return redirect()->route('setting.index')
-            ->with('success', 'Regimen Fiscal creado satisfactoriamente.');
+        $comp1 = $request->nombre;
+        $comp = Setting::where('nombre','like','%'.$comp1.'%')
+        ->where('status',1)->first();
+        if($comp == null)
+        {
+            Setting::create($request->all());
+            return redirect()->route('setting.index')
+                ->with('success', 'Creado satisfactoriamente.');
+        }elseif($comp->nombre == $comp1)
+        {
+            return redirect()->route('setting.index')
+            ->with('success', 'Verificar que anterior datto este inactivo');
+        }else{
+            return redirect()->route('setting.index')
+            ->with('success', 'Verificar que anterior datto este inactivo');
+        }
+        
     }
 
     public function show($id)
@@ -43,13 +59,26 @@ class SettingController extends Controller
     {
         $setting->update($request->all());
         return redirect()->route('setting.index')
-            ->with('success', 'Regimen fiscal actualizado satisfactoriamente');
+            ->with('success', 'Actualizado satisfactoriamente');
     }
 
     public function destroy($id)
     {
         Setting::find($id)->delete();
         return redirect()->route('setting.index')
-            ->with('success', 'Regimen fiscal eliminado satisfactoriamente');
+            ->with('success', 'Eliminado satisfactoriamente');
+    }
+    public function import()
+    {
+        return view('setting.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        
+        $file = $request->file('import');
+        Excel::import(new SettingsImport, $file);
+        return redirect()->route('setting.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

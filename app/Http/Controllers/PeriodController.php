@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PeriodCreateRequest;
 use App\Http\Requests\PeriodEditRequest;
+use App\Imports\PeriodsImport;
 use App\Models\Period;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeriodController extends Controller
 {
     public function index()
     {
-        $periods = DB::table('periods')->Simplepaginate(5);
+        $periods = DB::table('periods')->Simplepaginate(10);
         return view('period.index',compact('periods'));
     }
 
@@ -25,7 +28,7 @@ class PeriodController extends Controller
     {
         Period::create($request->all());
         return redirect()->route('period.index')
-            ->with('success', 'Contrato creado satisfactoriamente.');
+            ->with('success', 'Periodo creado satisfactoriamente.');
     }
 
     public function show($id)
@@ -44,13 +47,26 @@ class PeriodController extends Controller
     {
         $period->update($request->all());
         return redirect()->route('period.index')
-            ->with('success', 'Contrato actualizado satisfactoriamente');
+            ->with('success', 'Periodo actualizado satisfactoriamente');
     }
 
     public function destroy($id)
     {
         Period::find($id)->delete();
         return redirect()->route('period.index')
-            ->with('success', 'Contrato eliminado satisfactoriamente');
+            ->with('success', 'Periodo eliminado satisfactoriamente');
+    }
+
+    public function import()
+    {
+        return view('period.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        $file = $request->file('import');
+        Excel::import(new PeriodsImport, $file);
+        return redirect()->route('period.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

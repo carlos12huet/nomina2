@@ -9,9 +9,12 @@ class Period extends Model
 {
     use HasFactory;
     protected $table = 'periods';
+    protected $dateFormat = 'Y-m-d';
     protected $fillable= [
         'clave',
-        'nombre'
+        'nombre',
+        'created_at',
+        'updated_at',
     ];
 
     public function contracts()

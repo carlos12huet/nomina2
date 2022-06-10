@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $setting->nombre ?? 'Regimen Fiscal' }}
+    {{ $setting->nombre ?? 'Registro' }}
 @endsection
 
 @section('content')

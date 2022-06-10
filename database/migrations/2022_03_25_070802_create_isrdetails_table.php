@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('isrdetails', function (Blueprint $table) {
             $table->id();
-            $table->double('lim_inf',8,2);
-            $table->double('lim_sup',8,2);
-            $table->double('cuota',8,2);
-            $table->double('excedente',8,2);
-            $table->unsignedBigInteger('isr_id');//llave foranea ISR
-            $table->timestamps();
+            $table->double('lim_inf',15,5);
+            $table->double('lim_sup',15,5);
+            $table->double('cuota',15,5);
+            $table->double('excedente',15,5);
+            $table->unsignedBigInteger('isr_id')->nullable(false);//llave foranea ISR
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
 
             //Relacion tabla isr
-            $table->foreign('isr_id')->references('id')->on('isr');
+            $table->foreign('isr_id')->references('id')->on('isr')->onDelete('cascade');
         });
     }
 

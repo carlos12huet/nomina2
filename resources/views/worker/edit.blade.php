@@ -14,11 +14,9 @@
                         <span class="card-title">Actualizar trabajador</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('worker.update', $worker->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                            {!! Form::model($worker, ['route'=>['worker.update',$worker],'autocomplete'=>'off', 'files' => true, 'method'=>'patch']) !!}
                             @include('worker.form')
-                        </form>
+                            {!! Form::close() !!}
                     </div>
                 </div>
             </div>

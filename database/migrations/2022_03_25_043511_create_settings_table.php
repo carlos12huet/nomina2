@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->double('valor');
+            $table->double('valor',15,8);
             $table->boolean('status');
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

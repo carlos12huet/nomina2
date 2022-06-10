@@ -25,10 +25,16 @@
                             {{ $position->clave }}
                         </div>
                         <div class="form-group">
-                            <strong>Nombre:</strong>
+                            <strong>Puesto  </strong>
                             {{ $position->nombre }}
+                            <br>
+                            <br>
+                            <strong> Ubicados en </strong>
+                            @foreach ($position->departments as $proyect)
+                            <br>    
+                                {{$proyect->nombre}}
+                            @endforeach
                         </div>
-
                     </div>
                 </div>
             </div>

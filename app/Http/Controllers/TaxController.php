@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaxCreateRequest;
 use App\Http\Requests\TaxEditRequest;
+use App\Imports\TaxsImport;
 use App\Models\Tax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TaxController extends Controller
 {
     public function index()
     {
-        $taxs = DB::table('taxs')->Simplepaginate(5);
+        $taxs = DB::table('taxs')->Simplepaginate(10);
         return view('tax.index',compact('taxs'));
     }
 
@@ -53,5 +55,18 @@ class TaxController extends Controller
         Tax::find($id)->delete();
         return redirect()->route('tax.index')
             ->with('success', 'Regimen fiscal eliminado satisfactoriamente');
+    }
+
+    public function import()
+    {
+        return view('tax.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        $file = $request->file('import');
+        Excel::import(new TaxsImport, $file);
+        return redirect()->route('tax.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

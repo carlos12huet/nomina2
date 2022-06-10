@@ -10,6 +10,16 @@
             {{ Form::text('nombre', $position->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            <br>
+            <br>
+            {{ Form::label('Departamentos') }}
+            @foreach ($departments as $department)
+                <br>
+                {{Form::checkbox('departments[]', $department->id,)}}
+                {{$department->nombre}}
+            @endforeach
+        </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn mt-2 btn-primary">Guardar</button>
     </div>

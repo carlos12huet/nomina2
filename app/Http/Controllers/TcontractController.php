@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TcontractCreateRequest;
 use App\Http\Requests\TcontractEditRequest;
+use App\Imports\TcontractsImport;
 use App\Models\Tcontract;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TcontractController extends Controller
 {
     public function index()
     {
-        $tcontracts = DB::table('tcontracts')->Simplepaginate(5);
+        $tcontracts = DB::table('tcontracts')->Simplepaginate(10);
         return view('tcontract.index',compact('tcontracts'));
     }
 
@@ -52,5 +55,18 @@ class TcontractController extends Controller
         Tcontract::find($id)->delete();
         return redirect()->route('tcontract.index')
             ->with('success', 'Contrato eliminado satisfactoriamente');
+    }
+
+    public function import()
+    {
+        return view('tcontract.import-excel');
+    }
+
+    public function saveimport(Request $request)
+    {
+        $file = $request->file('import');
+        Excel::import(new TcontractsImport, $file);
+        return redirect()->route('tcontract.index')
+            ->with('success', 'Datos importados satisfactoriamente.');
     }
 }

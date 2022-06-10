@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Department extends Model
 {
@@ -13,12 +14,11 @@ class Department extends Model
     protected $fillable= [
         'clave',
         'nombre',
-        'project_id',
     ];
 
     public function contracts()
     {
-        return $this->hasMany('App\Models\Contract');
+        return $this->hasMany(Contract::class);
     }
     public function positions()
     {
@@ -27,8 +27,18 @@ class Department extends Model
     /** 
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-    public function project()
+    public function projects()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsToMany(Project::class);
+    }
+
+    protected function nombre(): Attribute
+    {
+        return new Attribute(
+            set: function($value)
+            {
+                return strtoupper($value);
+            }
+        );
     }
 }

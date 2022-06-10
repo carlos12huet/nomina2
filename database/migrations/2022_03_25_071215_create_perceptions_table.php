@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre');
-            $table->unsignedBigInteger('per_sat_id');// LLave foranea sat percepciones
-            $table->timestamps();
+            $table->unsignedBigInteger('satperception_id')->nullable();// LLave foranea sat percepciones
+            $table->integer('tipo');
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
 
             //relacion sat percepciones
-            $table->foreign('per_sat_id')->references('id')->on('satperceptions');
+            $table->foreign('satperception_id')->references('id')->on('satperceptions');
         });
     }
 

@@ -10,10 +10,25 @@
             {{ Form::text('nombre', $department->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div>
-            {{ Form::label('Proyecto') }}
-            {{ Form::select('project_id', $projects, $department->project_id, ['class' => 'form-control' . ($errors->has('project_id') ? ' is-invalid' : ''), 'placeholder' => 'Proyecto']) }}
-            {!! $errors->first('project_id', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group">
+            <br>
+            <br>
+            {{ Form::label('Proyectos') }}
+            @foreach ($projects as $project)
+                <br>
+                {{Form::checkbox('projects[]', $project->id)}}
+                {{$project->nombre}}
+            @endforeach
+        </div>
+        <div class="form-group">
+            <br>
+            <br>
+            {{ Form::label('Puestos') }}
+            @foreach ($positions as $position)
+                <br>
+                {{Form::checkbox('positions[]', $position->id)}}
+                {{$position->nombre}}
+            @endforeach
         </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn mt-2 btn-primary">Guardar</button>

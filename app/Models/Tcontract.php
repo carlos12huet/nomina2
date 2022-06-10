@@ -9,6 +9,7 @@ class Tcontract extends Model
 {
     use HasFactory;
     protected $table = 'tcontracts';
+    protected $dateFormat = 'Y-m-d';
     protected $fillable = [
         'clave',
         'nombre',

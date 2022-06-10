@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('paydetails', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
-            $table->unsignedBigInteger('contract_id');  //llave foranea contract
-            $table->unsignedBigInteger('payroll_id');    //llave foranea nomina
-            $table->double('percepcion',8,2);
-            $table->double('per_gravable',8,2);
-            $table->double('deduccion',8,2);
-            $table->double('monto_total',8,2);
-            $table->timestamps();
+            $table->unsignedBigInteger('contract_id')->nullable(false);  //llave foranea contract
+            $table->unsignedBigInteger('payroll_id')->nullable(false);    //llave foranea nomina
+            $table->double('percepcion',15,5)->nullable();
+            $table->double('per_gravable',15,5)->nullable();
+            $table->double('deduccion',15,5)->nullable();
+            $table->double('monto_total',15,5)->nullable();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
 
             //relacion nomina y contracts
             $table->foreign('contract_id')->references('id')->on('contracts');

@@ -20,6 +20,9 @@
                                 <a href="{{ route('department.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo') }}
                                 </a>
+                                <a href="{{ route('department.import') }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                                    {{ __('Importar') }}
+                                  </a>
                               </div>
                         </div>
                     </div>
@@ -31,17 +34,15 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-bordered table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>ID</th>
 										<th>Clave</th>
 										<th>Nombre</th>
-                                        <th>Proyecto</th>
                                         <th>Creado</th>
                                         <th>Actualizado</th>
-
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +51,6 @@
                                             <td>{{$department->id}}</td>
 											<td>{{$department->clave }}</td>
 											<td>{{$department->nombre }}</td>
-                                            <td>{{ $department->project->nombre }}</td>
                                             <td>{{$department->created_at}}</td>
                                             <td>{{$department->updated_at}}</td>
 
@@ -60,7 +60,9 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('department.edit',$department->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     {{csrf_field()}}
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    @if (auth()->user()->role_id == 1)
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>    
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>

@@ -13,7 +13,10 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Crear regimen</span>
+                        <span class="card-title ">Crear regimen</span>
+                        <div class="float-rigth">
+                            <a class="btn btn-primary my-2" href="{{ route('regime.index') }}"> Regresar</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('regime.store') }}"  role="form" enctype="multipart/form-data">

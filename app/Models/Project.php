@@ -21,14 +21,10 @@ class Project extends Model
     }
     public function departments()
     {
-        return $this->hasMany(Department::class);
+        return $this->belongsToMany(Department::class);
     }
     public function municipalities()
     {
-        return $this->belongsToMany('App\Models\Municipality');
-    }
-    public function payrolls()
-    {
-        return $this->hasMany('App\Models\Payroll');
+        return $this->belongsToMany(Municipality::class);
     }
 }

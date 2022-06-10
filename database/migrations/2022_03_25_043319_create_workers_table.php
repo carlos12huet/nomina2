@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('nombre',45)->unique()->nullable(false);
             $table->string('correo',45)->unique()->nullable();
             $table->boolean('status');
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 
