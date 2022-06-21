@@ -13,6 +13,15 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
+        <div class="form-group">
+            <br>
+            <p class="fw-bold">Tipo</p>
+            {{ Form::label('Quincenal') }}
+            {{ Form::radio('tipo', 1, true) }}
+            {{ Form::label('Mensual') }}
+            {{ Form::radio('tipo', 0) }}
+            <br>
+        </div>
 
         <div class="form-group">
             <br>
@@ -25,9 +34,11 @@
             {!! $errors->first('status', '<strong>Validar unico activo</strong>') !!}
             
         </div>
-        {{--<div class="form-check {{$errors->has('status') ? 'is-invalid':''}}">
-            <input type="hidden" name="status" value="0">
-            <input class="form-check-input mt-3" type="checkbox" name="status" id="status" value="1" {{$worker->status || old('status',0) === 1 ? 'checked':''}}>
-            <label class="form-check-label mt-2" for="status">Activo</label>
-        </div>--}}
+        {{--
+            <div class="form-check {{$errors->has('status') ? 'is-invalid':''}}">
+                <input type="hidden" name="status" value="0">
+                <input class="form-check-input mt-3" type="checkbox" name="status" id="status" value="1" {{$worker->status || old('status',0) === 1 ? 'checked':''}}>
+                <label class="form-check-label mt-2" for="status">Activo</label>
+            </div>
+        --}}
 </div>

@@ -23,6 +23,9 @@ class WorkersImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row)
     {
         return new Worker([
+            'paterno' => $row['paterno'],
+            'materno' => $row['materno'],
+            'nombre_completo' => $row['nombre_completo'],
             'rfc' => $row['rfc'],
             'nombre' => $row['nombre'],
             'curp' => $row['curp'],
@@ -35,6 +38,18 @@ class WorkersImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
+            '*.paterno' => [
+                'required',
+                'unique:workers'
+            ],
+            '*.materno' => [
+                'required',
+                'unique:workers'
+            ],
+            '*.nombre_completo' => [
+                'required',
+                'unique:workers'
+            ],
             '*.rfc' => [
                 'required',
                 'unique:workers'

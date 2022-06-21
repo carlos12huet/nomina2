@@ -18,6 +18,7 @@ class MunicipalitiesImport implements ToModel, WithHeadingRow, WithValidation
     {
         return new Municipality([
             'clave' => $row['clave'],
+            'zona_economica' => $row['zona_economica'],
             'nombre' => $row['nombre'],       
         ]);
     }
@@ -33,6 +34,9 @@ class MunicipalitiesImport implements ToModel, WithHeadingRow, WithValidation
             [
                 'required',
                 'unique:municipalities'
+            ],
+            '*.zona_economica' => [
+                'nullable'
             ],
         ];
     }

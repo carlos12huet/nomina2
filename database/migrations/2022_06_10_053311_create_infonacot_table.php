@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('infonacot', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('worker_id');
+            $table->double('prestamo',15,5);
+            $table->double('pago_quincenal',15,5);
+            $table->double('pago_total',15,5)->nullable();
+            $table->boolean('status');
             $table->timestamps();
+            $table->foreign('worker_id')->references('id')->on('workers')->onDelete('cascade');
         });
     }
 

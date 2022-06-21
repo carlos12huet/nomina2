@@ -28,7 +28,6 @@ class PerEditRequest extends FormRequest
             'clave' => ['required','unique:perceptions,clave,'.$perception->id],
             'nombre' => 'required',
             'satperception_id' => 'nullable',
-            'tipo' => 'required|numeric|in:1,2,3,4,5,6',
         ];
     }
 }

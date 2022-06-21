@@ -25,6 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable(false);  //llave foranea departamentos
             $table->unsignedBigInteger('municipality_id')->nullable(false); //llave foranea municipios
             $table->unsignedBigInteger('period_id')->nullable(false);   //llave foranea perpagos
+            $table->date('baja')->nullable();
             $table->boolean('sindicalizado');
             $table->boolean('status');
             $table->text('observaciones')->nullable();

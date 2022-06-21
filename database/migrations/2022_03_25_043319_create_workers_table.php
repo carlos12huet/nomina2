@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
+            $table->string('paterno');
+            $table->string('materno');
+            $table->string('nombres');
             $table->string('rfc',13)->unique()->nullable(false);
             $table->string('curp',18)->unique()->nullable(false);
             $table->string('nss',11)->unique()->nullable(false);

@@ -13,6 +13,15 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
+        <div class="form-group">
+            <br>
+            <p class="fw-bold">Tipo</p>
+            {{ Form::label('Quincenal') }}
+            {{ Form::radio('tipo', 1, true) }}
+            {{ Form::label('Mensual') }}
+            {{ Form::radio('tipo', 0) }}
+            <br>
+        </div>
 
         <div class="form-group">
             <br>

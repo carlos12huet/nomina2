@@ -11,8 +11,19 @@ class Compdetail extends Model
     protected $table = 'compdetails';
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
-        'clave',
-        'descripcion',
-        'status'
+        'complement_id',
+        'worker_id',
+        'autorizacion',
+        'status',
+        'monto'
     ];
+
+    public function complement()
+    {
+        return $this->belongsTo(Complement::class);
+    }
+    public function worker()
+    {
+        return $this->belongsTo(Worker::class);
+    }
 }

@@ -13,6 +13,8 @@ class Tabdetail extends Model
     protected $fillable = [
         'tab_id',
         'position_id',
+        'compensacion',
+        'zona_economica',
         'sueldo_diario',
         'sueldo_mensual',
     ];

@@ -27,7 +27,6 @@ class DeductionsImport implements ToCollection, WithHeadingRow, WithValidation
             $deduction = Deduction::create([
                     'clave' => $row['clave'],
                     'nombre' => $row['nombre'],
-                    'tipo' => $row['tipo'],
                     'satdeduction_id' => $this->sat[$row['sat']] ?? null,
                 ]);
             $sihaea = $this->sihae->where('clave',$row['sihae'])->first();

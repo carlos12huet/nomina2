@@ -25,8 +25,8 @@ return new class extends Migration
             $table->date('updated_at')->nullable();
 
             //relacion nomina y contracts
-            $table->foreign('contract_id')->references('id')->on('contracts');
-            $table->foreign('payroll_id')->references('id')->on('payrolls');
+            $table->foreign('contract_id')->references('id')->on('contracts')->onDelete('cascade');
+            $table->foreign('payroll_id')->references('id')->on('payrolls')->onDelete('cascade');
         });
     }
 

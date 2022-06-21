@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre');
             $table->unsignedBigInteger('satperception_id')->nullable();// LLave foranea sat percepciones
-            $table->integer('tipo');
             $table->date('created_at');
             $table->date('updated_at')->nullable();
 

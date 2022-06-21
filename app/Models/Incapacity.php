@@ -11,8 +11,13 @@ class Incapacity extends Model
     protected $table = 'incapacities';
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
-        'clave',
-        'descripcion',
-        'status'
+        'contract_id',
+        'fecha_inicio',
+        'fecha_final'
     ];
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
 }

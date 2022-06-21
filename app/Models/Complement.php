@@ -11,8 +11,18 @@ class Complement extends Model
     protected $table = 'complements';
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
-        'clave',
+        'tab_id',
         'descripcion',
         'status'
     ];
+
+    public function compdetails()
+    {
+        return $this->hasMany(Compdetail::class);
+    }
+
+    public function tab()
+    {
+        return $this->belongsTo(Tab::class);
+    }
 }

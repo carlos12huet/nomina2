@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('clave')->unique()->nullable(false);
             $table->string('nombre');
             $table->unsignedBigInteger('satdeduction_id')->nullable(); //llave foranea sat deducciones
-            $table->integer('tipo');
             $table->date('created_at');
             $table->date('updated_at')->nullable();
             $table->foreign('satdeduction_id')->references('id')->on('satdeductions');

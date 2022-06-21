@@ -15,6 +15,10 @@ class Contract extends Model
         'created_at',
         'updated_at',
     ];
+    public function incapacities()
+    {
+        return $this->hasMany(Incapacity::class);
+    }
     public function worker()
     {
         return $this->belongsTo(Worker::class);

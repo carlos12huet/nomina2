@@ -11,8 +11,10 @@ class Infonacot extends Model
     protected $table = 'infonacot';
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
-        'clave',
-        'descripcion',
+        'worker_id',
+        'prestamo',
+        'pago_quincenal',
+        'pago_total',
         'status'
     ];
 }

@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('pensions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('worker_id');
+            $table->double('porcentaje',15,5);
+            $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('worker_id')->references('id')->on('workers')->onDelete('cascade');
         });
     }
 

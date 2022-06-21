@@ -13,6 +13,7 @@ class Subsidy extends Model
     protected $fillable= [
         'clave',
         'descripcion',
+        'tipo',
         'status'
     ];
     public function subdetails()

@@ -13,6 +13,7 @@ class Municipality extends Model
     protected $fillable= [
         'clave',
         'nombre',
+        'zona_economica'
     ];
 
     public function contracts()

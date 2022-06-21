@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('deduction_id');
             $table->double('monto',15,5);
             $table->timestamps();
-            $table->foreign('paydetail_id')->references('id')->on('paydetails');
-            $table->foreign('deduction_id')->references('id')->on('deductions');
+            $table->foreign('paydetail_id')->references('id')->on('paydetails')->onDelete('cascade');
+            $table->foreign('deduction_id')->references('id')->on('deductions')->onDelete('cascade');
         });
     }
 

@@ -27,6 +27,7 @@ class isrCreateRequest extends FormRequest
             'clave' => 'required|unique:isr',
             'descripcion' => 'required|unique:isr',
             'status' => 'boolean',
+            'tipo' => 'boolean'
         ];
         if($this->status == 1)
         {

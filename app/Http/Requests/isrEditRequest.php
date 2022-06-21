@@ -28,6 +28,7 @@ class isrEditRequest extends FormRequest
             'clave' => ['required','unique:isr,clave,'.$isr->id],
             'descripcion' => ['required','unique:isr,descripcion,'.$isr->id],
             'status' => 'boolean',
+            'tipo' => 'boolean'
         ];
         if($this->status == 1)
         {

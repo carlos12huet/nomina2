@@ -14,7 +14,6 @@ class Perception extends Model
         'clave',
         'nombre',
         'satperception_id',
-        'tipo'
     ];
 
     public function satperception()

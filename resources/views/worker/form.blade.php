@@ -2,9 +2,27 @@
     <div class="box-body ">
 
         <div class="form-group">
-            {{ Form::label('nombre') }}
-            {{ Form::text('nombre', $worker->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
+            {{ Form::label('Apellido Paterno') }}
+            {{ Form::text('paterno', $worker->paterno, ['class' => 'form-control' . ($errors->has('paterno') ? ' is-invalid' : ''), 'placeholder' => 'Apellido Paterno']) }}
+            {!! $errors->first('paterno', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('Apellido Materno') }}
+            {{ Form::text('materno', $worker->materno, ['class' => 'form-control' . ($errors->has('materno') ? ' is-invalid' : ''), 'placeholder' => 'Apellido Materno']) }}
+            {!! $errors->first('materno', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('Nombres') }}
+            {{ Form::text('nombre', $worker->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombres']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        
+        <div class="form-group">
+            {{ Form::label('Nombre completo') }}
+            {{ Form::text('nombres', $worker->nombres, ['class' => 'form-control' . ($errors->has('nombres') ? ' is-invalid' : ''), 'disabled', 'placeholder' => 'SLUG']) }}
+            {!! $errors->first('nombre_completo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">

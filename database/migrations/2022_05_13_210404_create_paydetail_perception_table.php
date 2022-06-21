@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('perception_id');
             $table->double('monto',15,5);
             $table->timestamps();
-            $table->foreign('paydetail_id')->references('id')->on('paydetails');
-            $table->foreign('perception_id')->references('id')->on('perceptions');
+            $table->foreign('paydetail_id')->references('id')->on('paydetails')->onDelete('cascade');
+            $table->foreign('perception_id')->references('id')->on('perceptions')->onDelete('cascade');
         });
     }
 

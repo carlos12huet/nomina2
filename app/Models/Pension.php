@@ -11,8 +11,13 @@ class Pension extends Model
     protected $table = 'pensions';
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
-        'clave',
-        'descripcion',
+        'worker_id',
+        'porcentaje',
         'status'
     ];
+
+    public function worker()
+    {
+        return $this->belongsTo(Worker::class);
+    }
 }

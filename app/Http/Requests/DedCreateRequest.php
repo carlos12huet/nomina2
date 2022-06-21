@@ -27,7 +27,6 @@ class DedCreateRequest extends FormRequest
             'clave' => ['required','unique:deductions'],
             'nombre' => 'required',
             'satdeduction_id' => 'nullable',
-            'tipo' => 'required|numeric|in:1,2,3,4,5,6',
         ];
     }
 }

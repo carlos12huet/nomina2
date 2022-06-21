@@ -29,6 +29,8 @@ class TabdetailsImport implements ToModel, WithHeadingRow, WithValidation
         return new Tabdetail([
             'tab_id' => $this->tab[$row['tabulador']],
             'position_id' => $this->puesto[$row['puesto']],
+            'zona_economica' => $row['zona_economica'],
+            'compensacion' => $row['compensacion'],
             'sueldo_diario' => $row['diario'] ?? $row['sueldo_diario'],
             'sueldo_mensual' => $row['mensual'] ?? $row['sueldo_mensual'],
         ]);
@@ -41,7 +43,13 @@ class TabdetailsImport implements ToModel, WithHeadingRow, WithValidation
             ],
             '*.puesto' => [
                 'required'
-            ]
+            ],
+            '*.zona_economica' => [
+                'nullable'
+            ],
+            '*.compensacion' => [
+                'nullable'
+            ],
         ];
     }
 }

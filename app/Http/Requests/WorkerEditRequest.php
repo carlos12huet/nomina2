@@ -25,6 +25,9 @@ class WorkerEditRequest extends FormRequest
     {
         $worker = $this->route('worker');
         return [
+            'paterno' => 'required',
+            'materno' => 'required',
+            'nombre_completo' => 'required',
             'rfc' => ['required','max:13','min:13','unique:workers,rfc,'.$worker->id],
             'nss' => ['required','max:11','min:11','unique:workers,nss,'.$worker->id],
             'curp' => ['required','max:18','min:18','unique:workers,curp,'.$worker->id],

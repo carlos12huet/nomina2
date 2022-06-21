@@ -27,7 +27,6 @@ class PerCreateRequest extends FormRequest
             'clave' => ['required','unique:perceptions'],
             'nombre' => 'required',
             'satperception_id' => 'nullable',
-            'tipo' => 'required|numeric|in:1,2,3,4,5,6',
         ];
     }
 }

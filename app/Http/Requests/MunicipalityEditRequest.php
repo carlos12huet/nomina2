@@ -27,6 +27,7 @@ class MunicipalityEditRequest extends FormRequest
         return [
             'clave' => ['required','unique:municipalities,clave,'.$municipality->id],
             'nombre' => ['required','unique:municipalities,nombre,'.$municipality->id],
+            'zona_economica' => 'required',
         ];
     }
 }

@@ -27,6 +27,7 @@ class SubsidieRequest extends FormRequest
             'clave' => ['required','unique:subsidies'],
             'descripcion' => ['required','unique:subsidies'],
             'status' => 'boolean',
+            'tipo' => 'boolean'
         ];
         if($this->status == 1)
         {

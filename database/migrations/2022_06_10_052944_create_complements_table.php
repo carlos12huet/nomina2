@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('complements', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status');
+            $table->string('descripcion');
+            $table->unsignedBigInteger('tab_id');
             $table->timestamps();
+
+            $table->foreign('tab_id')->references('id')->on('tabs')->onDelete('cascade');
         });
     }
 

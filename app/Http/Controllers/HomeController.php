@@ -34,22 +34,17 @@ class HomeController extends Controller
         elseif(($userlogin->id == 1) && ($userlogin->role_id == null))
         {
             return redirect()->route('role.create')
-            ->with('success', 'Ingresaste como Administrador, crea un rol y añadelo al usuario creado');
+            ->with('success', 'Primer usuario, crea un rol de administrador y añadelo al usuario creado');
         }
-        elseif($userlogin->id == 1)
-        {
-            return view('home');
-        }
-        elseif($userlogin->role_id == null)
+        elseif($userlogin->role_id == null and $userlogin->id != null)
         {
             Auth::logout();
             return redirect()->route('home')
             ->with('success', 'No tienes un rol. Consulta al administrador');
         }
-        else
+        elseif( $userlogin->id != null)
         {
             return view('home');
         }
-        
     }
 }

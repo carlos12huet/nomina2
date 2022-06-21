@@ -12,6 +12,7 @@ class Isr extends Model
     protected $dateFormat = 'Y-m-d';
     protected $fillable= [
         'clave',
+        'tipo',
         'descripcion',
         'status'
     ];

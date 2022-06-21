@@ -14,7 +14,6 @@ class Deduction extends Model
         'clave',
         'nombre',
         'satdeduction_id',
-        'tipo'
     ];
 
     public function satdeduction()
